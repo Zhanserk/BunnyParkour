@@ -1,0 +1,38 @@
+AI_LOG - Bunny Parkour
+Student: Zhanserik (GitHub: Zhanserk), group OR1-2
+Course: Game Development Fundamentals, Assignment 8-9 "Mobile Game Kickoff"
+
+TOOLS USED
+- Claude (claude.ai chat) - for learning: explanations, hints, finding my mistakes.
+
+
+ASSIGNMENT 8-9 (Nov 2026)
+
+1. Git / GitHub
+   Asked: how to add Unity .gitignore, README, commits, branch and pull request.
+   Did myself: created the repo, all commits, branch feature/mobile-ui,
+   pull request #1 and merge in GitHub Desktop / GitHub.
+
+2. Canvas Scaler and anchors
+   Asked: what Scale With Screen Size and Match = 1 mean, how to pin UI to corners.
+   Did myself: set 1920x1080, Match 1 on all scenes, anchored HUD with Shift+Alt,
+   moved carrot counter under HP, tested in Device Simulator.
+
+3. SafeArea
+   Asked: what Screen.safeArea is and how the Apply() math works
+   (position + size, dividing by Screen.width / Screen.height).
+   The script follows the example from the week 8-9 lecture. The chat explained it
+   line by line and showed the Apply() lines; I typed the code myself.
+   Chat helped me find mistakes: class inherited from Unity's SafeArea instead
+   of MonoBehaviour, and the script was attached to Main Camera
+   (NullReferenceException).
+
+4. Pause menu
+   Asked: how Time.timeScale works and why to reset it before LoadScene.
+   Chat gave the method header SetPaused(bool paused) and hints; I wrote the
+   rest of PauseMenu.cs myself. Chat pointed out my mistake: "public bool"
+   instead of "public void".
+   Did myself: PauseButton, PausePanel, Resume/Restart/Menu buttons, styling,
+   OnClick setup, prefab for Level1-3.
+
+I can explain every line of SafeArea.cs and PauseMenu.cs.
