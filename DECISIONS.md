@@ -13,7 +13,7 @@ and moved the speed to the NavMeshAgent in the Inspector.
 pattern as my Fox. Added a rule: enemies attack only if the bunny has not
 passed them yet, so there are no attacks from off-screen.
 
-2026-11-12  Playtest: 1 tester (my sister) on the iPhone, [X] tries. She said
+2026-11-12  Playtest: 1 tester (my sister) on the iPhone, [4] tries. She said
 the phone controls are hard. Changed Goat windUp 0.7 -> 1.0 s and Hedgehog
 aimTime 0.8 -> 1.0 s to give more time to react. Only one tester because of
 time.
