@@ -1150,7 +1150,7 @@ MonoBehaviour:
   walls:
     serializedVersion: 2
     m_Bits: 0
-  viewRange: 6
+  viewRange: 7
   fov: 90
   loseTime: 2
   attackRange: 1.2
@@ -2165,8 +2165,8 @@ MonoBehaviour:
   aimLaser: {fileID: 2051344242}
   stateLabel: {fileID: 248230074}
   range: 10
-  aimTime: 0.8
-  cooldown: 1.5
+  aimTime: 0.3
+  cooldown: 1
 --- !u!1 &565236733
 GameObject:
   m_ObjectHideFlags: 0
@@ -2367,15 +2367,15 @@ PrefabInstance:
       objectReference: {fileID: 1931081864}
     - target: {fileID: 8270746388528287536, guid: 8c0a9e67f6a8f16428304439a60ad1ab, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8270746388528287536, guid: 8c0a9e67f6a8f16428304439a60ad1ab, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8270746388528287536, guid: 8c0a9e67f6a8f16428304439a60ad1ab, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 76
       objectReference: {fileID: 0}
     - target: {fileID: 8270746388528287536, guid: 8c0a9e67f6a8f16428304439a60ad1ab, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2821,7 +2821,7 @@ MonoBehaviour:
   range: 6
   windUp: 0.7
   dashSpeed: 10
-  dashTime: 0.8
+  dashTime: 1
   stunTime: 1.5
 --- !u!1 &725365342
 GameObject:
@@ -5734,7 +5734,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4, y: 4.25, z: 109}
-  m_LocalScale: {x: 0.45187, y: 1, z: 0.7436669}
+  m_LocalScale: {x: 0.45187, y: 1, z: 1.0670133}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1419006051}

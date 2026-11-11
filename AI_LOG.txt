@@ -36,3 +36,17 @@ ASSIGNMENT 8-9 (Nov 2026)
    OnClick setup, prefab for Level1-3.
 
 I can explain every line of SafeArea.cs and PauseMenu.cs.
+
+
+ASSIGNMENT 10 - Enemy AI (Nov 9-12, 2026)
+- Claude Code (agent) built enemy models from primitives, new islands,
+  materials and the NavMesh bake. It did NOT write gameplay scripts.
+  (The week 10 lecture says agents are allowed from this week;
+  details are in DECISIONS.md.)
+- Fox.cs: I wrote the patrol part myself with hints from Claude chat
+  (enum, switch, SetState, waypoints). The sight, chase and attack parts
+  and the final simplified version were given by Claude chat.
+- Hedgehog.cs, Goat.cs, Needle.cs: code given by Claude chat in the same
+  pattern as Fox. I connected references, tuned numbers and tested.
+- I can explain every line: enum, timer, switch, SetState, NavMeshAgent,
+  Raycast with LayerMask, Instantiate, agent.Move.
