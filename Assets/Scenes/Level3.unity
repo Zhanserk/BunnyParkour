@@ -2161,12 +2161,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Hedgehog
   player: {fileID: 646507532}
   muzzle: {fileID: 1561189920}
-  needle: {fileID: 2985572693493471436, guid: 33244f1da7b2fe243a220f2b80d17938, type: 3}
+  needlePrefab: {fileID: 2985572693493471436, guid: 33244f1da7b2fe243a220f2b80d17938, type: 3}
   aimLaser: {fileID: 2051344242}
   stateLabel: {fileID: 248230074}
+<<<<<<< Updated upstream
   range: 10
   aimTime: 0.8
   cooldown: 1.5
+=======
+  viewRange: 10
+  fov: 120
+  aimTime: 0.3
+  cooldown: 1
+  turnSpeed: 10
+>>>>>>> Stashed changes
 --- !u!1 &565236733
 GameObject:
   m_ObjectHideFlags: 0
@@ -2818,11 +2826,20 @@ MonoBehaviour:
   player: {fileID: 646507532}
   dashLane: {fileID: 632259756}
   stateLabel: {fileID: 937654835}
-  range: 6
+  triggerRange: 8
+  fov: 120
   windUp: 0.7
+<<<<<<< Updated upstream
   dashSpeed: 10
   dashTime: 0.8
+=======
+  dashSpeed: 50
+  dashDistance: 8
+  hitRange: 1.2
+>>>>>>> Stashed changes
   stunTime: 1.5
+  idleCooldown: 1.5
+  turnSpeed: 6
 --- !u!1 &725365342
 GameObject:
   m_ObjectHideFlags: 0
@@ -5734,7 +5751,11 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4, y: 4.25, z: 109}
+<<<<<<< Updated upstream
   m_LocalScale: {x: 0.45187, y: 1, z: 0.7436669}
+=======
+  m_LocalScale: {x: 0.45187, y: 1, z: 0.8523302}
+>>>>>>> Stashed changes
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1419006051}

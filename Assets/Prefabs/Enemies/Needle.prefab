@@ -153,4 +153,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9540e3f769430194fb0c37510c5821f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Needle
-  speed: 6
+  speed: 30
+  lifeTime: 3
