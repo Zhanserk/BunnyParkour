@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if(transform.position.y <= -3)
+        if(transform.position.y <= 0)
         {
             _health.Die();
 
