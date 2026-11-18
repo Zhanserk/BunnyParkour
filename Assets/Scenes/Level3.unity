@@ -1462,6 +1462,7 @@ GameObject:
   m_Component:
   - component: {fileID: 356522273}
   - component: {fileID: 356522272}
+  - component: {fileID: 356522274}
   m_Layer: 0
   m_Name: Music
   m_TagString: Untagged
@@ -1581,6 +1582,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &356522274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 356522271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bd0097aa1598944990ba2583267b0ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MusicVolume
 --- !u!1 &384552607
 GameObject:
   m_ObjectHideFlags: 0
@@ -1944,6 +1957,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 438936160}
   m_CullTransparentMesh: 1
+--- !u!1 &445524566
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 445524568}
+  - component: {fileID: 445524567}
+  m_Layer: 0
+  m_Name: LevelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &445524567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445524566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74b2ae292e038ec4f87bb0c92cf6686d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelManager
+  data: {fileID: 11400000, guid: eb0c42914f97b934188c190537b5895f, type: 2}
+  player: {fileID: 646507532}
+  playerController: {fileID: 646507533}
+  levelText: {fileID: 344475575}
+--- !u!4 &445524568
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445524566}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &478537194
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2358,6 +2419,10 @@ PrefabInstance:
       propertyPath: carrottext
       value: 
       objectReference: {fileID: 1931081864}
+    - target: {fileID: 7208260907641687379, guid: 8c0a9e67f6a8f16428304439a60ad1ab, type: 3}
+      propertyPath: levelManager
+      value: 
+      objectReference: {fileID: 445524567}
     - target: {fileID: 8270746388528287536, guid: 8c0a9e67f6a8f16428304439a60ad1ab, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2416,6 +2481,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8270746388528287536, guid: 8c0a9e67f6a8f16428304439a60ad1ab, type: 3}
   m_PrefabInstance: {fileID: 646507531}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &646507533 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7208260907641687379, guid: 8c0a9e67f6a8f16428304439a60ad1ab, type: 3}
+  m_PrefabInstance: {fileID: 646507531}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57b5bd1427ea39f4ea1ddab7124c8f76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
 --- !u!114 &652362333 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 553754660120833788, guid: 71fe74f7f2e91194b96fc7e88e1581f2, type: 3}
@@ -8940,3 +9016,4 @@ SceneRoots:
   - {fileID: 1207320303}
   - {fileID: 478537194}
   - {fileID: 841451059}
+  - {fileID: 445524568}

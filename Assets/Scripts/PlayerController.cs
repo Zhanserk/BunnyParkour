@@ -11,6 +11,10 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] PlayerStats stats;   // Assignment 11: скорость, прыжок и высота падения теперь в ассете PlayerStats
 
+    [SerializeField] LevelManager levelManager;   // Assignment 11: сообщаем ему, что уровень пройден
+
+    bool _goalSet;   // Assignment 11: цель по морковкам уже задал LevelManager?
+
     public AudioClip jumpSound;
 
     public AudioClip coinSound;
@@ -67,10 +71,20 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-       _totalcarrot =  GameObject.FindGameObjectsWithTag("CollectiveCoin").Length;
+       if(!_goalSet)   // Assignment 11: если цель не задал LevelManager, считаем морковки в сцене, как раньше
+       {
+           _totalcarrot =  GameObject.FindGameObjectsWithTag("CollectiveCoin").Length;
+       }
         ShowCarrots();
 
 
+    }
+
+    // Assignment 11: LevelManager задаёт, сколько морковок нужно собрать на этом уровне
+    public void SetCarrotGoal(int goal)
+    {
+        _totalcarrot = goal;
+        _goalSet = true;
     }
 
     void FixedUpdate()
@@ -175,6 +189,7 @@ public class PlayerController : MonoBehaviour
 
         if(other.gameObject.tag == "Exit" && _carrots >= _totalcarrot)
         {
+            if(levelManager != null) levelManager.Complete();   // Assignment 11: сначала сохраняем рекорд и открываем следующий уровень
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
 
