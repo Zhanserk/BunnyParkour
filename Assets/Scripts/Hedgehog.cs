@@ -10,9 +10,7 @@ public class Hedgehog : MonoBehaviour
     [SerializeField] GameObject needle;     // префаб Needle
     [SerializeField] GameObject aimLaser;   // красный лазер = предупреждение
     [SerializeField] TMP_Text stateLabel;   // табличка
-    [SerializeField] float range = 10f;     // м, с какого расстояния стреляет
-    [SerializeField] float aimTime = 0.8f;  // с, целится перед выстрелом
-    [SerializeField] float cooldown = 1.5f; // с, отдых после выстрела
+    [SerializeField] HedgehogStats stats;   // Assignment 11: дальность, время прицеливания и отдыха теперь в ассете HedgehogStats
 
     State state;
     float timer;
@@ -31,7 +29,7 @@ public class Hedgehog : MonoBehaviour
 
             case State.Aim:
                 if (!PlayerInFront()) SetState(State.Idle);           // ушёл
-                else if (timer > aimTime)                             // прицелился
+                else if (timer > stats.aimTime)                       // прицелился
                 {
                     Instantiate(needle, muzzle.position, muzzle.rotation);   // выстрел
                     SetState(State.Cooldown);
@@ -39,7 +37,7 @@ public class Hedgehog : MonoBehaviour
                 break;
 
             case State.Cooldown:
-                if (timer > cooldown) SetState(State.Idle);           // отдохнул
+                if (timer > stats.cooldown) SetState(State.Idle);     // отдохнул
                 break;
         }
     }
@@ -47,7 +45,7 @@ public class Hedgehog : MonoBehaviour
     bool PlayerInFront()
     {
         // близко И заяц ещё не прошёл ежа (ёж виден на экране)
-        return Vector3.Distance(transform.position, player.position) < range
+        return Vector3.Distance(transform.position, player.position) < stats.range
             && player.position.z < transform.position.z;
     }
 

@@ -1150,12 +1150,7 @@ MonoBehaviour:
   walls:
     serializedVersion: 2
     m_Bits: 0
-  viewRange: 6
-  fov: 90
-  loseTime: 2
-  attackRange: 1.2
-  windUp: 0.5
-  restTime: 0.8
+  stats: {fileID: 11400000, guid: 4445c8490ac423f42af44a7f2cc093af, type: 2}
 --- !u!4 &250822936 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7679990295194827000, guid: 71fe74f7f2e91194b96fc7e88e1581f2, type: 3}
@@ -2164,9 +2159,7 @@ MonoBehaviour:
   needle: {fileID: 2985572693493471436, guid: 33244f1da7b2fe243a220f2b80d17938, type: 3}
   aimLaser: {fileID: 2051344242}
   stateLabel: {fileID: 248230074}
-  range: 10
-  aimTime: 0.8
-  cooldown: 1.5
+  stats: {fileID: 11400000, guid: 1a8f4a9188b13594dab192090c5d2f39, type: 2}
 --- !u!1 &565236733
 GameObject:
   m_ObjectHideFlags: 0
@@ -2818,11 +2811,7 @@ MonoBehaviour:
   player: {fileID: 646507532}
   dashLane: {fileID: 632259756}
   stateLabel: {fileID: 937654835}
-  range: 6
-  windUp: 0.7
-  dashSpeed: 10
-  dashTime: 0.8
-  stunTime: 1.5
+  stats: {fileID: 11400000, guid: 02d7c09673e051c408bc2e32d6a154c4, type: 2}
 --- !u!1 &725365342
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,9 +9,7 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 
 {
-    public float speed = 6f;
-
-    public float jupmspeed = 8f;
+    [SerializeField] PlayerStats stats;   // Assignment 11: скорость, прыжок и высота падения теперь в ассете PlayerStats
 
     public AudioClip jumpSound;
 
@@ -77,7 +75,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        _rd.linearVelocity = (new Vector3 (_move.x  * speed, _rd.linearVelocity.y , _move.y * speed));
+        _rd.linearVelocity = (new Vector3 (_move.x  * stats.moveSpeed, _rd.linearVelocity.y , _move.y * stats.moveSpeed));   // Assignment 11: speed -> stats.moveSpeed
         if(_move.magnitude > 0.1f)
         {
            transform.rotation = Quaternion.LookRotation(new Vector3(_move.x ,  0 , _move.y));
@@ -87,7 +85,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if(transform.position.y <= -3)
+        if(transform.position.y <= stats.fallDeathY)   // Assignment 11: было -3
         {
             _health.Die();
 
@@ -111,7 +109,7 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        _rd.linearVelocity = new Vector3(_rd.linearVelocity.x , jupmspeed , _rd.linearVelocity.z  );
+        _rd.linearVelocity = new Vector3(_rd.linearVelocity.x , stats.jumpSpeed , _rd.linearVelocity.z  );   // Assignment 11: jupmspeed -> stats.jumpSpeed
         _audio.PlayOneShot(jumpSound);
 
 

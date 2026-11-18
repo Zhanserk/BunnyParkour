@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Needle : MonoBehaviour
 {
-    [SerializeField] float speed = 6f;   // м/с
+    [SerializeField] HedgehogStats stats;   // Assignment 11: скорость и время жизни иголки теперь в ассете HedgehogStats
 
-    void Start()  { Destroy(gameObject, 3f); }                                        // через 3 с исчезнуть
-    void Update() { transform.position += transform.forward * speed * Time.deltaTime; } // лететь вперёд
+    void Start()  { Destroy(gameObject, stats.needleLifetime); }                                  // через needleLifetime с исчезнуть
+    void Update() { transform.position += transform.forward * stats.needleSpeed * Time.deltaTime; } // лететь вперёд
 }
