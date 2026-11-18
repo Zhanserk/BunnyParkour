@@ -309,11 +309,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57b5bd1427ea39f4ea1ddab7124c8f76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  speed: 6
-  jumpSpeed: 8
-  coinText: {fileID: 0}
+  stats: {fileID: 11400000, guid: 4152c7a8bbc1236488bfae3ba0ad5736, type: 2}
   jumpSound: {fileID: 8300000, guid: 7b9399a410a538d48a463a96d5b1297c, type: 3}
   coinSound: {fileID: 8300000, guid: ef63974c39f37464a80e2cf3c31b51be, type: 3}
+  carrottext: {fileID: 0}
 --- !u!114 &2788801113411625112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,6 +325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bbab77a3a8cf514eb69b1e28f701706, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
+  stats: {fileID: 11400000, guid: 4152c7a8bbc1236488bfae3ba0ad5736, type: 2}
   hp: 3
-  hpText: {fileID: 0}
+  hptext: {fileID: 0}
   hurtSound: {fileID: 8300000, guid: c60ee2112803b6e4089f7e7792fff4e9, type: 3}

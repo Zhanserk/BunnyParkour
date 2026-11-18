@@ -12,12 +12,7 @@ public class Fox : MonoBehaviour
     [SerializeField] TMP_Text stateLabel;       // табличка над головой
     [SerializeField] GameObject warnRing;       // красный круг = предупреждение
     [SerializeField] LayerMask walls;           // слой Walls (камень)
-    [SerializeField] float viewRange = 6f;      // м, как далеко видит
-    [SerializeField] float fov = 90f;           // градусы, угол обзора
-    [SerializeField] float loseTime = 2f;       // с, не видит зайца -> Patrol
-    [SerializeField] float attackRange = 1.2f;  // м, дистанция укуса
-    [SerializeField] float windUp = 0.5f;       // с, рычит перед укусом
-    [SerializeField] float restTime = 0.8f;     // с, отдых после укуса
+    [SerializeField] FoxStats stats;            // Assignment 11: числа баланса (дальность, угол, время) теперь в ассете FoxStats
 
     NavMeshAgent agent;   // навигатор
     State state;          // карточка в руке
@@ -45,21 +40,21 @@ public class Fox : MonoBehaviour
             case State.Chase:
                 agent.SetDestination(player.position);             // бегу к зайцу
                 if (CanSeePlayer()) timer = 0f;                    // вижу -> секундомер с нуля
-                if (dist < attackRange) SetState(State.Attack);    // близко -> кусаю
-                else if (timer > loseTime) SetState(State.Patrol); // 2 с не видно -> гуляю
+                if (dist < stats.attackRange) SetState(State.Attack);    // близко -> кусаю
+                else if (timer > stats.loseTime) SetState(State.Patrol); // долго не видно -> гуляю
                 break;
 
             case State.Attack:
-                if (timer > windUp)                                // порычала 0.5 с
+                if (timer > stats.windUp)                          // порычала
                 {
-                    if (dist < attackRange + 0.3f)                 // заяц ещё рядом?
+                    if (dist < stats.attackRange + stats.biteExtraRange)   // заяц ещё рядом?
                         player.GetComponent<Health>().Hurt();      // кусь!
                     SetState(State.Rest);
                 }
                 break;
 
             case State.Rest:
-                if (timer > restTime) SetState(State.Chase);       // отдохнула -> снова гонюсь
+                if (timer > stats.restTime) SetState(State.Chase); // отдохнула -> снова гонюсь
                 break;
         }
     }
@@ -71,7 +66,7 @@ public class Fox : MonoBehaviour
 
     void Patrol()
     {
-        if (!agent.pathPending && agent.remainingDistance < 0.3f)  // дошла до флажка
+        if (!agent.pathPending && agent.remainingDistance < stats.arriveDistance)  // дошла до флажка
         {
             i = (i + 1) % points.Length;                           // следующий по кругу
             agent.SetDestination(points[i].position);
@@ -80,14 +75,14 @@ public class Fox : MonoBehaviour
 
     bool CanSeePlayer()
     {
-        Vector3 eye = transform.position + Vector3.up;             // глаза: 1 м над лапами
-        Vector3 toPlayer = player.position + Vector3.up - eye;     // стрелка от глаз к зайцу
+        Vector3 eye = transform.position + Vector3.up * stats.eyeHeight;             // глаза: eyeHeight м над лапами
+        Vector3 toPlayer = player.position + Vector3.up * stats.eyeHeight - eye;     // стрелка от глаз к зайцу
 
-        if (toPlayer.magnitude > viewRange) return false;                          // 1. далеко
-        if (Vector3.Angle(transform.forward, toPlayer) > fov / 2f) return false;   // 2. за спиной
+        if (toPlayer.magnitude > stats.viewRange) return false;                          // 1. далеко
+        if (Vector3.Angle(transform.forward, toPlayer) > stats.fov / 2f) return false;   // 2. за спиной
         if (Physics.Raycast(eye, toPlayer.normalized, toPlayer.magnitude, walls))
-            return false;                                                           // 3. камень мешает
-        return true;                                                                // вижу!
+            return false;                                                                 // 3. камень мешает
+        return true;                                                                      // вижу!
     }
 
     void SetState(State next)

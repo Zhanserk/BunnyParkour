@@ -9,9 +9,11 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 
 {
-    public float speed = 6f;
+    [SerializeField] PlayerStats stats;   // Assignment 11: скорость, прыжок и высота падения теперь в ассете PlayerStats
 
-    public float jupmspeed = 8f;
+    [SerializeField] LevelManager levelManager;   // Assignment 11: сообщаем ему, что уровень пройден
+
+    bool _goalSet;   // Assignment 11: цель по морковкам уже задал LevelManager?
 
     public AudioClip jumpSound;
 
@@ -69,15 +71,25 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-       _totalcarrot =  GameObject.FindGameObjectsWithTag("CollectiveCoin").Length;
+       if(!_goalSet)   // Assignment 11: если цель не задал LevelManager, считаем морковки в сцене, как раньше
+       {
+           _totalcarrot =  GameObject.FindGameObjectsWithTag("CollectiveCoin").Length;
+       }
         ShowCarrots();
 
 
     }
 
+    // Assignment 11: LevelManager задаёт, сколько морковок нужно собрать на этом уровне
+    public void SetCarrotGoal(int goal)
+    {
+        _totalcarrot = goal;
+        _goalSet = true;
+    }
+
     void FixedUpdate()
     {
-        _rd.linearVelocity = (new Vector3 (_move.x  * speed, _rd.linearVelocity.y , _move.y * speed));
+        _rd.linearVelocity = (new Vector3 (_move.x  * stats.moveSpeed, _rd.linearVelocity.y , _move.y * stats.moveSpeed));   // Assignment 11: speed -> stats.moveSpeed
         if(_move.magnitude > 0.1f)
         {
            transform.rotation = Quaternion.LookRotation(new Vector3(_move.x ,  0 , _move.y));
@@ -87,7 +99,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if(transform.position.y <= -3)
+        if(transform.position.y <= stats.fallDeathY)   // Assignment 11: было -3
         {
             _health.Die();
 
@@ -111,7 +123,7 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        _rd.linearVelocity = new Vector3(_rd.linearVelocity.x , jupmspeed , _rd.linearVelocity.z  );
+        _rd.linearVelocity = new Vector3(_rd.linearVelocity.x , stats.jumpSpeed , _rd.linearVelocity.z  );   // Assignment 11: jupmspeed -> stats.jumpSpeed
         _audio.PlayOneShot(jumpSound);
 
 
@@ -177,6 +189,7 @@ public class PlayerController : MonoBehaviour
 
         if(other.gameObject.tag == "Exit" && _carrots >= _totalcarrot)
         {
+            if(levelManager != null) levelManager.Complete();   // Assignment 11: сначала сохраняем рекорд и открываем следующий уровень
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
 
