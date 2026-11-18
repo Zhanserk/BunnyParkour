@@ -62,12 +62,8 @@ public class Hedgehog : MonoBehaviour
     void TurnToPlay()
     {
         Vector3 dir = player.position - transform.position;
-
         dir.y = 0f;
-        if(dir == Vector3.zero)
-        {
-            return;
-        }
+
         Quaternion look = Quaternion.LookRotation(dir);
         transform.rotation = Quaternion.Slerp(transform.rotation , look , turnSpeed * Time.deltaTime);
 
