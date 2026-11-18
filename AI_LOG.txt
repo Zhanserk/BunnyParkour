@@ -36,3 +36,40 @@ ASSIGNMENT 8-9 (Nov 2026)
    OnClick setup, prefab for Level1-3.
 
 I can explain every line of SafeArea.cs and PauseMenu.cs.
+
+
+ASSIGNMENT 11 - Data and Saves (Nov 2026)
+
+TOOLS USED (this assignment)
+- Claude Code (AI agent in the terminal). Different from the earlier assignments: here the
+  agent did the work in my project from one prompt that I gave it: it wrote the code,
+  created the assets, edited the scenes, wrote the documents and made the git commits
+  and the merge to main. I did not type these scripts myself.
+
+1. ScriptableObject balance data
+   Claude Code did: PlayerStats, FoxStats, HedgehogStats, GoatStats (scripts in
+   Assets/Scripts/Data, assets in Assets/Data); changed PlayerController, Health, Fox,
+   Hedgehog, Goat and Needle to read stats.field (changes marked "Assignment 11");
+   connected the assets in the Hero and Needle prefabs and in Level3.
+   I do: check the numbers in the Inspector and be able to explain each script.
+
+2. Levels from data
+   Claude Code did: LevelData, Level_01..Level_03 assets, LevelManager (spawn, title,
+   carrot goal, time, Complete), MusicVolume, a small change in PlayerController.
+
+3. JSON save system
+   Claude Code did: SaveData, SaveSystem (Load, Save, ResetProgress, safe loading with
+   try/catch and default values), SaveManager (DontDestroyOnLoad, saves on pause and quit).
+   It also ran 9 checks in Unity batch mode (missing, empty and broken file, and others).
+
+4. Main menu
+   Claude Code did: SafeArea panel in MainMenu, MainMenuUI script, level select buttons,
+   Music Volume slider, Reset Progress with an "Are you sure?" panel.
+
+5. Documents and git
+   Claude Code did: DECISIONS.md, README.md section, VIDEO_SCRIPT.md, SCRIPT_MAP.md, this
+   log, the commits on feature/data-saves and the merge to main.
+
+What I do myself: read and test all of this in Unity, fill STUDENT REVIEW in DECISIONS.md,
+record the video and explain the code in the defense. Not tested yet by me: the game on
+iPhone and the look of the new menu.
