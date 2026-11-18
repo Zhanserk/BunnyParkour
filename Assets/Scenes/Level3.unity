@@ -8155,9 +8155,10 @@ MonoBehaviour:
   stateLabel: {fileID: 64085225}
   veiwRange: 10
   fov: 120
+  extraAngle: 15
   aimTime: 0.8
   cooldown: 1
-  turnSpeed: 10
+  turnSpeed: 180
 --- !u!1 &1968634397
 GameObject:
   m_ObjectHideFlags: 0
