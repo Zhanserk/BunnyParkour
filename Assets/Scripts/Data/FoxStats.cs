@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "FoxStats", menuName = "Bunny/Fox Stats")]
 public class FoxStats : ScriptableObject
 {
-    public float viewRange = 6f;        // м, как далеко лиса видит зайца
+    public float viewRange = 7f;        // м, как далеко лиса видит зайца
     public float fov = 90f;             // градусы, угол обзора (на всю ширину)
     public float loseTime = 2f;         // с, сколько лиса не видит зайца, прежде чем вернуться на маршрут
     public float attackRange = 1.2f;    // м, дистанция, с которой лиса начинает кусать
