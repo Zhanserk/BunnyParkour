@@ -8,9 +8,9 @@ using Unity.VisualScripting;
 public class Health : MonoBehaviour
 {
 
-    [SerializeField] PlayerStats stats;   // Assignment 11: максимум HP, лечение, мигание теперь в ассете PlayerStats
+    [SerializeField] PlayerStats stats;
 
-    public int hp;   // Assignment 11: стартовое значение берётся из stats.maxHp (в Awake)
+    public int hp;
 
     public TMP_Text hptext;
 
@@ -31,7 +31,7 @@ public class Health : MonoBehaviour
     {
         _parts = GetComponentsInChildren<Renderer>();
         _audio = GetComponent<AudioSource>();
-        hp = stats.maxHp;   // Assignment 11: стартовые жизни из ассета
+        hp = stats.maxHp;
     }
 
 
@@ -58,7 +58,7 @@ public class Health : MonoBehaviour
 
         }
 
-        hp -= stats.hurtDamage;   // Assignment 11: было hp--
+        hp -= stats.hurtDamage;
         _audio.PlayOneShot(hurtSound);
         Showhp();
         if(hp <= 0)
@@ -86,14 +86,14 @@ public class Health : MonoBehaviour
     private IEnumerator Blink()
     {
         _safe = true;
-        for(int i  = 0 ; i < stats.blinkCount ; i++)   // Assignment 11: было 10
+        for(int i  = 0 ; i < stats.blinkCount ; i++)
         {
             for(int j = 0 ; j < _parts.Length ; j++)
             {
                 _parts[j].enabled = !_parts[j].enabled;
 
             }
-            yield return new WaitForSeconds(stats.blinkInterval);   // Assignment 11: было 0.2f
+            yield return new WaitForSeconds(stats.blinkInterval);
         }
         for(int i = 0 ; i < _parts.Length ; i++)
         {
@@ -108,9 +108,9 @@ public class Health : MonoBehaviour
     public void Heal()
     {   
         
-        if(hp < stats.maxHp)   // Assignment 11: было hp < 3
+        if(hp < stats.maxHp)
         {
-            hp = Mathf.Min(hp + stats.healAmount, stats.maxHp);   // Assignment 11: было hp++
+            hp = Mathf.Min(hp + stats.healAmount, stats.maxHp);
 
             Showhp();
 

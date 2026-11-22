@@ -2,22 +2,21 @@ using UnityEngine;
 using UnityEngine.AI;
 using TMPro;
 
-// Лиса-патрульный: Patrol -> Chase -> Attack -> Rest -> Chase
 public class Fox : MonoBehaviour
 {
     enum State { Patrol, Chase, Attack, Rest }
 
-    [SerializeField] Transform player;          // заяц
-    [SerializeField] Transform[] points;        // флажки маршрута FoxPoint1..4
-    [SerializeField] TMP_Text stateLabel;       // табличка над головой
-    [SerializeField] GameObject warnRing;       // красный круг = предупреждение
-    [SerializeField] LayerMask walls;           // слой Walls (камень)
-    [SerializeField] FoxStats stats;            // Assignment 11: числа баланса (дальность, угол, время) теперь в ассете FoxStats
+    [SerializeField] Transform player;
+    [SerializeField] Transform[] points;
+    [SerializeField] TMP_Text stateLabel;
+    [SerializeField] GameObject warnRing;
+    [SerializeField] LayerMask walls;
+    [SerializeField] FoxStats stats;
 
-    NavMeshAgent agent;   // навигатор
-    State state;          // карточка в руке
-    float timer;          // секундомер
-    int i;                // номер флажка
+    NavMeshAgent agent;
+    State state;
+    float timer;
+    int i;
 
     void Start()
     {
@@ -28,61 +27,61 @@ public class Fox : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        float dist = Vector3.Distance(transform.position, player.position);   // расстояние до зайца
+        float dist = Vector3.Distance(transform.position, player.position);
 
         switch (state)
         {
             case State.Patrol:
-                Patrol();                                          // хожу по флажкам
-                if (CanSeePlayer()) SetState(State.Chase);         // увидела -> гонюсь
+                Patrol();
+                if (CanSeePlayer()) SetState(State.Chase);
                 break;
 
             case State.Chase:
-                agent.SetDestination(player.position);             // бегу к зайцу
-                if (CanSeePlayer()) timer = 0f;                    // вижу -> секундомер с нуля
-                if (dist < stats.attackRange) SetState(State.Attack);    // близко -> кусаю
-                else if (timer > stats.loseTime) SetState(State.Patrol); // долго не видно -> гуляю
+                agent.SetDestination(player.position);
+                if (CanSeePlayer()) timer = 0f;
+                if (dist < stats.attackRange) SetState(State.Attack);
+                else if (timer > stats.loseTime) SetState(State.Patrol);
                 break;
 
             case State.Attack:
-                if (timer > stats.windUp)                          // порычала
+                if (timer > stats.windUp)
                 {
-                    if (dist < stats.attackRange + stats.biteExtraRange)   // заяц ещё рядом?
-                        player.GetComponent<Health>().Hurt();      // кусь!
+                    if (dist < stats.attackRange + stats.biteExtraRange)
+                        player.GetComponent<Health>().Hurt();
                     SetState(State.Rest);
                 }
                 break;
 
             case State.Rest:
-                if (timer > stats.restTime) SetState(State.Chase); // отдохнула -> снова гонюсь
+                if (timer > stats.restTime) SetState(State.Chase);
                 break;
         }
     }
 
     void LateUpdate()
     {
-        stateLabel.transform.rotation = Camera.main.transform.rotation;   // табличка к камере
+        stateLabel.transform.rotation = Camera.main.transform.rotation;
     }
 
     void Patrol()
     {
-        if (!agent.pathPending && agent.remainingDistance < stats.arriveDistance)  // дошла до флажка
+        if (!agent.pathPending && agent.remainingDistance < stats.arriveDistance)
         {
-            i = (i + 1) % points.Length;                           // следующий по кругу
+            i = (i + 1) % points.Length;
             agent.SetDestination(points[i].position);
         }
     }
 
     bool CanSeePlayer()
     {
-        Vector3 eye = transform.position + Vector3.up * stats.eyeHeight;             // глаза: eyeHeight м над лапами
-        Vector3 toPlayer = player.position + Vector3.up * stats.eyeHeight - eye;     // стрелка от глаз к зайцу
+        Vector3 eye = transform.position + Vector3.up * stats.eyeHeight;
+        Vector3 toPlayer = player.position + Vector3.up * stats.eyeHeight - eye;
 
-        if (toPlayer.magnitude > stats.viewRange) return false;                          // 1. далеко
-        if (Vector3.Angle(transform.forward, toPlayer) > stats.fov / 2f) return false;   // 2. за спиной
+        if (toPlayer.magnitude > stats.viewRange) return false;
+        if (Vector3.Angle(transform.forward, toPlayer) > stats.fov / 2f) return false;
         if (Physics.Raycast(eye, toPlayer.normalized, toPlayer.magnitude, walls))
-            return false;                                                                 // 3. камень мешает
-        return true;                                                                      // вижу!
+            return false;
+        return true;
     }
 
     void SetState(State next)
@@ -90,8 +89,8 @@ public class Fox : MonoBehaviour
         state = next;
         timer = 0f;
         stateLabel.text = next.ToString();
-        agent.isStopped = (next == State.Attack || next == State.Rest);   // стоит, когда кусает и отдыхает
-        warnRing.SetActive(next == State.Attack);                         // круг только во время рыка
-        if (next == State.Patrol) agent.SetDestination(points[i].position);  // вернуться на маршрут
+        agent.isStopped = (next == State.Attack || next == State.Rest);
+        warnRing.SetActive(next == State.Attack);
+        if (next == State.Patrol) agent.SetDestination(points[i].position);
     }
 }

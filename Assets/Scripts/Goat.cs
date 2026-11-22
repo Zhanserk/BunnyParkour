@@ -6,15 +6,15 @@ public class Goat : MonoBehaviour
 {
     enum State { Idle, WindUp, Dash, Stunned }
 
-    [SerializeField] Transform player;      // заяц
-    [SerializeField] GameObject dashLane;   // красная полоса = предупреждение
-    [SerializeField] TMP_Text stateLabel;   // табличка
-    [SerializeField] GoatStats stats;       // Assignment 11: дальность, время, скорость рывка теперь в ассете GoatStats
+    [SerializeField] Transform player;
+    [SerializeField] GameObject dashLane;
+    [SerializeField] TMP_Text stateLabel;
+    [SerializeField] GoatStats stats;
 
     NavMeshAgent agent;
     State state;
     float timer;
-    bool hit;   // уже ударил в этом рывке?
+    bool hit;
 
     void Start()
     {
@@ -31,32 +31,32 @@ public class Goat : MonoBehaviour
         {
             case State.Idle:
                 if (dist < stats.range && player.position.z < transform.position.z)
-                    SetState(State.WindUp);                                  // заметил
+                    SetState(State.WindUp);
                 break;
 
             case State.WindUp:
-                if (timer > stats.windUp) SetState(State.Dash);             // предупредил
+                if (timer > stats.windUp) SetState(State.Dash);
                 break;
 
             case State.Dash:
-                agent.Move(transform.forward * stats.dashSpeed * Time.deltaTime); // бежит вперёд, NavMesh не даст упасть
-                if (!hit && dist < stats.hitDistance)                       // задел зайца
+                agent.Move(transform.forward * stats.dashSpeed * Time.deltaTime);
+                if (!hit && dist < stats.hitDistance)
                 {
                     player.GetComponent<Health>().Hurt();
-                    hit = true;                                             // только один удар за рывок
+                    hit = true;
                 }
                 if (timer > stats.dashTime) SetState(State.Stunned);
                 break;
 
             case State.Stunned:
-                if (timer > stats.stunTime) SetState(State.Idle);           // очухался
+                if (timer > stats.stunTime) SetState(State.Idle);
                 break;
         }
     }
 
     void LateUpdate()
     {
-        stateLabel.transform.rotation = Camera.main.transform.rotation;     // табличка к камере
+        stateLabel.transform.rotation = Camera.main.transform.rotation;
     }
 
     void SetState(State next)
@@ -64,9 +64,9 @@ public class Goat : MonoBehaviour
         state = next;
         timer = 0f;
         stateLabel.text = next.ToString();
-        dashLane.SetActive(next == State.WindUp);                           // полоса только при предупреждении
+        dashLane.SetActive(next == State.WindUp);
 
-        if (next == State.WindUp)   // повернуться к зайцу: полоса покажет, куда побежит
+        if (next == State.WindUp)
             transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
         if (next == State.Dash) hit = false;
     }

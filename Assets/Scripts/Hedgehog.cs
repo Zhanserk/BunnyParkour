@@ -5,12 +5,12 @@ public class Hedgehog : MonoBehaviour
 {
     enum State { Idle, Aim, Cooldown }
 
-    [SerializeField] Transform player;      // заяц
-    [SerializeField] Transform muzzle;      // нос, откуда вылетает иголка
-    [SerializeField] GameObject needle;     // префаб Needle
-    [SerializeField] GameObject aimLaser;   // красный лазер = предупреждение
-    [SerializeField] TMP_Text stateLabel;   // табличка
-    [SerializeField] HedgehogStats stats;   // Assignment 11: дальность, время прицеливания и отдыха теперь в ассете HedgehogStats
+    [SerializeField] Transform player;
+    [SerializeField] Transform muzzle;
+    [SerializeField] GameObject needle;
+    [SerializeField] GameObject aimLaser;
+    [SerializeField] TMP_Text stateLabel;
+    [SerializeField] HedgehogStats stats;
 
     State state;
     float timer;
@@ -24,27 +24,26 @@ public class Hedgehog : MonoBehaviour
         switch (state)
         {
             case State.Idle:
-                if (PlayerInFront()) SetState(State.Aim);             // заметил
+                if (PlayerInFront()) SetState(State.Aim);
                 break;
 
             case State.Aim:
-                if (!PlayerInFront()) SetState(State.Idle);           // ушёл
-                else if (timer > stats.aimTime)                       // прицелился
+                if (!PlayerInFront()) SetState(State.Idle);
+                else if (timer > stats.aimTime)
                 {
-                    Instantiate(needle, muzzle.position, muzzle.rotation);   // выстрел
+                    Instantiate(needle, muzzle.position, muzzle.rotation);
                     SetState(State.Cooldown);
                 }
                 break;
 
             case State.Cooldown:
-                if (timer > stats.cooldown) SetState(State.Idle);     // отдохнул
+                if (timer > stats.cooldown) SetState(State.Idle);
                 break;
         }
     }
 
     bool PlayerInFront()
     {
-        // близко И заяц ещё не прошёл ежа (ёж виден на экране)
         return Vector3.Distance(transform.position, player.position) < stats.range
             && player.position.z < transform.position.z;
     }
@@ -54,6 +53,6 @@ public class Hedgehog : MonoBehaviour
         state = next;
         timer = 0f;
         stateLabel.text = next.ToString();
-        aimLaser.SetActive(next == State.Aim);   // лазер только когда целится
+        aimLaser.SetActive(next == State.Aim);
     }
 }

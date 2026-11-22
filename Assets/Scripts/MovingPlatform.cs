@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour
 {
-    // кролик коснулся платформы
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -11,7 +10,6 @@ public class MovingPlatform : MonoBehaviour
         }
     }
 
-    // кролик ушёл с платформы
     void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.tag == "Player")
