@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 107373806}
   - component: {fileID: 107373805}
   - component: {fileID: 107373804}
+  - component: {fileID: 107373807}
   m_Layer: 0
   m_Name: RestartButton
   m_TagString: Untagged
@@ -252,6 +253,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 107373802}
   m_CullTransparentMesh: 1
+--- !u!114 &107373807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107373802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c96ed024edd488f4e8455ca63489b3a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UiClickSound
 --- !u!1001 &113593461
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -950,6 +963,7 @@ GameObject:
   - component: {fileID: 339041862}
   - component: {fileID: 339041861}
   - component: {fileID: 339041860}
+  - component: {fileID: 339041863}
   m_Layer: 0
   m_Name: MenuButton
   m_TagString: Untagged
@@ -1071,6 +1085,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 339041858}
   m_CullTransparentMesh: 1
+--- !u!114 &339041863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 339041858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c96ed024edd488f4e8455ca63489b3a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UiClickSound
 --- !u!114 &356522271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2845,6 +2871,51 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1062674957
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1062674959}
+  - component: {fileID: 1062674958}
+  m_Layer: 0
+  m_Name: SceneMusic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1062674958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062674957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eca4e8a395ca2d4cb42d179a990021f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneMusic
+  track: {fileID: 8300000, guid: 2dd7673a2efae59469e34770ad1ad28e, type: 3}
+--- !u!4 &1062674959
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062674957}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1119040135
 GameObject:
   m_ObjectHideFlags: 0
@@ -3037,6 +3108,7 @@ GameObject:
   - component: {fileID: 1175870385}
   - component: {fileID: 1175870384}
   - component: {fileID: 1175870383}
+  - component: {fileID: 1175870386}
   m_Layer: 0
   m_Name: ResumeButton
   m_TagString: Untagged
@@ -3158,6 +3230,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1175870381}
   m_CullTransparentMesh: 1
+--- !u!114 &1175870386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175870381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c96ed024edd488f4e8455ca63489b3a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UiClickSound
 --- !u!1 &1184335548
 GameObject:
   m_ObjectHideFlags: 0
@@ -4252,6 +4336,7 @@ GameObject:
   - component: {fileID: 1536752081}
   - component: {fileID: 1536752080}
   - component: {fileID: 1536752079}
+  - component: {fileID: 1536752082}
   m_Layer: 0
   m_Name: PauseButton
   m_TagString: Untagged
@@ -4373,6 +4458,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1536752077}
   m_CullTransparentMesh: 1
+--- !u!114 &1536752082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536752077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c96ed024edd488f4e8455ca63489b3a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UiClickSound
 --- !u!114 &1551888264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6515,14 +6612,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1931081864}
   - component: {fileID: 1931081863}
-  - component: {fileID: 1931081865}
   m_Layer: 0
   m_Name: Music
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &1931081863
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6532,10 +6628,10 @@ AudioSource:
   m_GameObject: {fileID: 1931081862}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6930009068381732453, guid: 86e007ea4a68c7c45b03b3c3c0ec4533, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: ced7a8f1dfae24f459e2bdf526407e9f, type: 3}
-  m_PlayOnAwake: 1
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 0.25
   m_Pitch: 1
   Loop: 1
@@ -6635,18 +6731,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1931081865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1931081862}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bd0097aa1598944990ba2583267b0ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MusicVolume
 --- !u!1 &1957090467
 GameObject:
   m_ObjectHideFlags: 0
@@ -7112,6 +7196,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
   pausePanel: {fileID: 698564114}
+  normalSnapshot: {fileID: 24500006, guid: 86e007ea4a68c7c45b03b3c3c0ec4533, type: 2}
+  pausedSnapshot: {fileID: 7924821282719878140, guid: 86e007ea4a68c7c45b03b3c3c0ec4533, type: 2}
+  snapshotTime: 0.3
 --- !u!1 &2121313958
 GameObject:
   m_ObjectHideFlags: 0
@@ -7259,3 +7346,4 @@ SceneRoots:
   - {fileID: 1220568073}
   - {fileID: 1630228338}
   - {fileID: 445524568}
+  - {fileID: 1062674959}

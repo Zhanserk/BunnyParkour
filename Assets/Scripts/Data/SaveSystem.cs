@@ -90,5 +90,8 @@ public static class SaveSystem
 
         if (float.IsNaN(d.musicVolume)) d.musicVolume = DefaultVolume;
         d.musicVolume = Mathf.Clamp01(d.musicVolume);
+
+        if (float.IsNaN(d.sfxVolume)) d.sfxVolume = 1f;   // Assignment 12
+        d.sfxVolume = Mathf.Clamp01(d.sfxVolume);         // Assignment 12
     }
 }

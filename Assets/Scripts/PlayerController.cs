@@ -15,9 +15,12 @@ public class PlayerController : MonoBehaviour
 
     bool _goalSet;
 
-    public AudioClip jumpSound;
-
-    public AudioClip coinSound;
+    [SerializeField] RandomSound jumpSounds;      // Assignment 12: прыжок (2-3 варианта)
+    [SerializeField] RandomSound pickupSounds;    // Assignment 12: морковка (2-3 варианта)
+    [SerializeField] AudioClip landSound;         // Assignment 12: приземление
+    [SerializeField] AudioClip healSound;         // Assignment 12: сердечко
+    [SerializeField] float landMinSpeed = 2f;     // Assignment 12: м/с, при более медленном падении приземление не звучит
+    bool _finished;                               // Assignment 12: уровень уже пройден (чтобы победа не звучала дважды)
 
     private AudioSource _audio;
 
@@ -123,9 +126,19 @@ public class PlayerController : MonoBehaviour
         }
 
         _rd.linearVelocity = new Vector3(_rd.linearVelocity.x , stats.jumpSpeed , _rd.linearVelocity.z  );
-        _audio.PlayOneShot(jumpSound);
+        jumpSounds.Play(_audio);   // Assignment 12: звук прыжка
 
 
+    }
+
+    // Assignment 12: звук приземления, если заяц упал на землю с заметной скоростью
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground" && Mathf.Abs(collision.relativeVelocity.y) > landMinSpeed)
+        {
+            _audio.pitch = 1f;
+            _audio.PlayOneShot(landSound);
+        }
     }
 
      void OnCollisionStay(Collision other) {
@@ -161,7 +174,7 @@ public class PlayerController : MonoBehaviour
         {
             _carrots++;
             Destroy(other.gameObject);
-            _audio.PlayOneShot(coinSound);
+            pickupSounds.Play(_audio);   // Assignment 12: звук морковки
 
             ShowCarrots();
 
@@ -179,7 +192,8 @@ public class PlayerController : MonoBehaviour
 
             Destroy(other.gameObject);
 
-            _audio.PlayOneShot(coinSound);
+            _audio.pitch = 1f;
+            _audio.PlayOneShot(healSound);   // Assignment 12: звук сердечка
 
 
             _health.Heal();
@@ -188,6 +202,9 @@ public class PlayerController : MonoBehaviour
 
         if(other.gameObject.tag == "Exit" && _carrots >= _totalcarrot)
         {
+            if(_finished) return;                 // Assignment 12
+            _finished = true;
+            SoundManager.Instance.PlayWin();      // Assignment 12: победа (звук не обрывается при смене сцены)
             if(levelManager != null) levelManager.Complete();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 

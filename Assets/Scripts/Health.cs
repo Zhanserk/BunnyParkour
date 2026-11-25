@@ -14,7 +14,9 @@ public class Health : MonoBehaviour
 
     public TMP_Text hptext;
 
-    public AudioClip hurtSound;
+    [SerializeField] RandomSound hurtSounds;   // Assignment 12: урон (2-3 варианта)
+
+    private bool _dead;   // Assignment 12: смерть засчитывается только один раз
     
 
     private AudioSource _audio;
@@ -59,7 +61,7 @@ public class Health : MonoBehaviour
         }
 
         hp -= stats.hurtDamage;
-        _audio.PlayOneShot(hurtSound);
+        if (hp > 0) hurtSounds.Play(_audio);   // Assignment 12: урон; при смерти звучит death
         Showhp();
         if(hp <= 0)
         {
@@ -79,6 +81,9 @@ public class Health : MonoBehaviour
 
     public void Die()
     {
+        if (_dead) return;                       // Assignment 12
+        _dead = true;
+        SoundManager.Instance.PlayDeath();       // Assignment 12: смерть и проигрыш, звук не обрывается при перезагрузке
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
     }
