@@ -209,7 +209,7 @@ AudioSource:
   m_GameObject: {fileID: 8758455269121496458}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 3580699371472044415, guid: 86e007ea4a68c7c45b03b3c3c0ec4533, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
@@ -310,8 +310,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   stats: {fileID: 11400000, guid: 4152c7a8bbc1236488bfae3ba0ad5736, type: 2}
-  jumpSound: {fileID: 8300000, guid: 7b9399a410a538d48a463a96d5b1297c, type: 3}
-  coinSound: {fileID: 8300000, guid: ef63974c39f37464a80e2cf3c31b51be, type: 3}
+  levelManager: {fileID: 0}
+  jumpSounds:
+    clips:
+    - {fileID: 8300000, guid: 43970ef5c4604314b97c207b24483eb0, type: 3}
+    - {fileID: 8300000, guid: 782a59f77465d7842b3d4e6e0ec70810, type: 3}
+    - {fileID: 8300000, guid: f33e8af02b6d40c4c941224ae7d5d4cc, type: 3}
+    minPitch: 0.92
+    maxPitch: 1.08
+  pickupSounds:
+    clips:
+    - {fileID: 8300000, guid: d6155c01b9a4b6042972485a93c3e0f0, type: 3}
+    - {fileID: 8300000, guid: d59989a454435f9438bc903f0dc82cd6, type: 3}
+    - {fileID: 8300000, guid: 4edad65707fe4d64cb42f5f2dd987dc3, type: 3}
+    minPitch: 0.92
+    maxPitch: 1.08
+  landSound: {fileID: 8300000, guid: 130242d7ab2970c42af3211c59b7862b, type: 3}
+  healSound: {fileID: 8300000, guid: c7b5005e8cac6bd43b340f55d85454a3, type: 3}
+  landMinSpeed: 2
   carrottext: {fileID: 0}
 --- !u!114 &2788801113411625112
 MonoBehaviour:
@@ -328,4 +344,10 @@ MonoBehaviour:
   stats: {fileID: 11400000, guid: 4152c7a8bbc1236488bfae3ba0ad5736, type: 2}
   hp: 3
   hptext: {fileID: 0}
-  hurtSound: {fileID: 8300000, guid: c60ee2112803b6e4089f7e7792fff4e9, type: 3}
+  hurtSounds:
+    clips:
+    - {fileID: 8300000, guid: fcda8c4bd9faac04db5f1dc9e07f453c, type: 3}
+    - {fileID: 8300000, guid: 2c4ecfd38add0644c894afdd457e92d9, type: 3}
+    - {fileID: 8300000, guid: dc161973d718576479732731f7a3d6ce, type: 3}
+    minPitch: 0.92
+    maxPitch: 1.08

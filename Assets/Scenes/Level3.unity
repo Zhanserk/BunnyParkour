@@ -1151,6 +1151,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   stats: {fileID: 11400000, guid: 4445c8490ac423f42af44a7f2cc093af, type: 2}
+  windupSound:
+    clips:
+    - {fileID: 8300000, guid: e811b2b60c48fc94f87a65b6a1344e6e, type: 3}
+    minPitch: 0.92
+    maxPitch: 1.08
 --- !u!4 &250822936 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7679990295194827000, guid: 71fe74f7f2e91194b96fc7e88e1581f2, type: 3}
@@ -1462,14 +1467,13 @@ GameObject:
   m_Component:
   - component: {fileID: 356522273}
   - component: {fileID: 356522272}
-  - component: {fileID: 356522274}
   m_Layer: 0
   m_Name: Music
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &356522272
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1479,10 +1483,10 @@ AudioSource:
   m_GameObject: {fileID: 356522271}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6930009068381732453, guid: 86e007ea4a68c7c45b03b3c3c0ec4533, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: ced7a8f1dfae24f459e2bdf526407e9f, type: 3}
-  m_PlayOnAwake: 1
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 0.25
   m_Pitch: 1
   Loop: 1
@@ -1582,18 +1586,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &356522274
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 356522271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bd0097aa1598944990ba2583267b0ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MusicVolume
 --- !u!1 &384552607
 GameObject:
   m_ObjectHideFlags: 0
@@ -1836,6 +1828,7 @@ GameObject:
   - component: {fileID: 438936164}
   - component: {fileID: 438936163}
   - component: {fileID: 438936162}
+  - component: {fileID: 438936165}
   m_Layer: 0
   m_Name: RestartButton
   m_TagString: Untagged
@@ -1957,6 +1950,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 438936160}
   m_CullTransparentMesh: 1
+--- !u!114 &438936165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438936160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c96ed024edd488f4e8455ca63489b3a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UiClickSound
 --- !u!1 &445524566
 GameObject:
   m_ObjectHideFlags: 0
@@ -2221,6 +2226,16 @@ MonoBehaviour:
   aimLaser: {fileID: 2051344242}
   stateLabel: {fileID: 248230074}
   stats: {fileID: 11400000, guid: 1a8f4a9188b13594dab192090c5d2f39, type: 2}
+  aimSound:
+    clips:
+    - {fileID: 8300000, guid: 2a972354ff86525458aa8e52cd8263cd, type: 3}
+    minPitch: 0.92
+    maxPitch: 1.08
+  shotSound:
+    clips:
+    - {fileID: 8300000, guid: 34bbc3b095656e54db00bbd5b2034d09, type: 3}
+    minPitch: 0.92
+    maxPitch: 1.08
 --- !u!1 &565236733
 GameObject:
   m_ObjectHideFlags: 0
@@ -2888,6 +2903,16 @@ MonoBehaviour:
   dashLane: {fileID: 632259756}
   stateLabel: {fileID: 937654835}
   stats: {fileID: 11400000, guid: 02d7c09673e051c408bc2e32d6a154c4, type: 2}
+  windupSound:
+    clips:
+    - {fileID: 8300000, guid: 12b0bc6a57ec6f841aa471c3a46b7f30, type: 3}
+    minPitch: 0.92
+    maxPitch: 1.08
+  dashSound:
+    clips:
+    - {fileID: 8300000, guid: fada9c2a6fe91b742a136bfd1ba74472, type: 3}
+    minPitch: 0.92
+    maxPitch: 1.08
 --- !u!1 &725365342
 GameObject:
   m_ObjectHideFlags: 0
@@ -4988,6 +5013,51 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1062674957
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1062674959}
+  - component: {fileID: 1062674958}
+  m_Layer: 0
+  m_Name: SceneMusic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1062674958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062674957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eca4e8a395ca2d4cb42d179a990021f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneMusic
+  track: {fileID: 8300000, guid: 2dd7673a2efae59469e34770ad1ad28e, type: 3}
+--- !u!4 &1062674959
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062674957}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1075132198
 GameObject:
   m_ObjectHideFlags: 0
@@ -5751,6 +5821,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
   pausePanel: {fileID: 1459283548}
+  normalSnapshot: {fileID: 24500006, guid: 86e007ea4a68c7c45b03b3c3c0ec4533, type: 2}
+  pausedSnapshot: {fileID: 7924821282719878140, guid: 86e007ea4a68c7c45b03b3c3c0ec4533, type: 2}
+  snapshotTime: 0.3
 --- !u!1 &1342997126
 GameObject:
   m_ObjectHideFlags: 0
@@ -7159,6 +7232,7 @@ GameObject:
   - component: {fileID: 1720587779}
   - component: {fileID: 1720587778}
   - component: {fileID: 1720587777}
+  - component: {fileID: 1720587780}
   m_Layer: 0
   m_Name: ResumeButton
   m_TagString: Untagged
@@ -7280,6 +7354,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1720587775}
   m_CullTransparentMesh: 1
+--- !u!114 &1720587780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720587775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c96ed024edd488f4e8455ca63489b3a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UiClickSound
 --- !u!1 &1725312029
 GameObject:
   m_ObjectHideFlags: 0
@@ -8226,6 +8312,7 @@ GameObject:
   - component: {fileID: 1968634401}
   - component: {fileID: 1968634400}
   - component: {fileID: 1968634399}
+  - component: {fileID: 1968634402}
   m_Layer: 0
   m_Name: PauseButton
   m_TagString: Untagged
@@ -8347,6 +8434,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1968634397}
   m_CullTransparentMesh: 1
+--- !u!114 &1968634402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968634397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c96ed024edd488f4e8455ca63489b3a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UiClickSound
 --- !u!1001 &1974455449
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8420,6 +8519,7 @@ GameObject:
   - component: {fileID: 2006592397}
   - component: {fileID: 2006592396}
   - component: {fileID: 2006592395}
+  - component: {fileID: 2006592398}
   m_Layer: 0
   m_Name: MenuButton
   m_TagString: Untagged
@@ -8541,6 +8641,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2006592393}
   m_CullTransparentMesh: 1
+--- !u!114 &2006592398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006592393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c96ed024edd488f4e8455ca63489b3a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UiClickSound
 --- !u!1001 &2019119276
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9017,3 +9129,4 @@ SceneRoots:
   - {fileID: 478537194}
   - {fileID: 841451059}
   - {fileID: 445524568}
+  - {fileID: 1062674959}
