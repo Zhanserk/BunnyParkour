@@ -117,4 +117,8 @@ one AudioListener per scene; all 21 buttons have the click sound; no empty sound
 layout has no overlaps; old save.json without sfxVolume gives sfx = 1. NOT checked: how it
 sounds, the crossfade, the pause muffling, and anything on the iPhone. I must listen myself.
 
-STUDENT REVIEW: ...
+
+STUDENT REVIEW 2026-11-26: I made the AudioMixer myself (groups, exposed
+volumes, Normal and Paused snapshots). I listened to every sound in the game
+and checked the sliders, the pause and the crossfade. I set the hedgehog
+cooldown back to 1.0 s to match my Assignment 10 playtest.
