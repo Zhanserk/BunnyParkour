@@ -12,7 +12,9 @@ public class Fox : MonoBehaviour
     [SerializeField] GameObject warnRing;
     [SerializeField] LayerMask walls;
     [SerializeField] FoxStats stats;
+    [SerializeField] RandomSound windupSound;   // Assignment 12: рычание в начале предупреждения (вход в Attack)
 
+    AudioSource voice;    // Assignment 12: динамик лисы (3D, группа SFX)
     NavMeshAgent agent;
     State state;
     float timer;
@@ -21,6 +23,7 @@ public class Fox : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        voice = GetComponent<AudioSource>();   // Assignment 12
         SetState(State.Patrol);
     }
 
@@ -91,6 +94,7 @@ public class Fox : MonoBehaviour
         stateLabel.text = next.ToString();
         agent.isStopped = (next == State.Attack || next == State.Rest);
         warnRing.SetActive(next == State.Attack);
+        if (next == State.Attack) windupSound.Play(voice);   // Assignment 12: рычит в начале предупреждения
         if (next == State.Patrol) agent.SetDestination(points[i].position);
     }
 }

@@ -9,8 +9,9 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] LevelData[] levels;
     [SerializeField] Button[] levelButtons;
     [SerializeField] TMP_Text[] levelLabels;
-    [SerializeField] Slider volumeSlider;
-    [SerializeField] MusicVolume music;
+    [UnityEngine.Serialization.FormerlySerializedAs("volumeSlider")]
+    [SerializeField] Slider musicSlider;   // Assignment 12: громкость музыки
+    [SerializeField] Slider sfxSlider;     // Assignment 12: громкость эффектов
     [SerializeField] GameObject confirmPanel;
     [SerializeField] Color lockedColor = new Color(0.45f, 0.45f, 0.45f, 1f);
 
@@ -25,7 +26,8 @@ public class MainMenuUI : MonoBehaviour
 
     void Start()
     {
-        volumeSlider.SetValueWithoutNotify(SaveSystem.Data.musicVolume);
+        musicSlider.SetValueWithoutNotify(SaveSystem.Data.musicVolume);   // Assignment 12
+        sfxSlider.SetValueWithoutNotify(SaveSystem.Data.sfxVolume);       // Assignment 12
         confirmPanel.SetActive(false);
         Refresh();
     }
@@ -61,10 +63,24 @@ public class MainMenuUI : MonoBehaviour
         SceneManager.LoadScene(levels[index].sceneName);
     }
 
-    public void OnVolumeChanged(float value)
+    // Assignment 12: слайдер музыки
+    public void OnMusicChanged(float value)
     {
         SaveSystem.Data.musicVolume = value;
-        music.Apply();
+        ApplyAndSave();
+    }
+
+    // Assignment 12: слайдер эффектов
+    public void OnSfxChanged(float value)
+    {
+        SaveSystem.Data.sfxVolume = value;
+        ApplyAndSave();
+    }
+
+    // Assignment 12: сразу применить к микшеру и сохранить
+    void ApplyAndSave()
+    {
+        SoundManager.Instance.ApplyVolumes();
         SaveSystem.Save();
     }
 

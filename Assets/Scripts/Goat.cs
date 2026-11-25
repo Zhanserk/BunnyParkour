@@ -10,7 +10,10 @@ public class Goat : MonoBehaviour
     [SerializeField] GameObject dashLane;
     [SerializeField] TMP_Text stateLabel;
     [SerializeField] GoatStats stats;
+    [SerializeField] RandomSound windupSound;   // Assignment 12: блеяние в начале предупреждения (вход в WindUp)
+    [SerializeField] RandomSound dashSound;     // Assignment 12: топот во время рывка
 
+    AudioSource voice;    // Assignment 12: динамик козла (3D, группа SFX)
     NavMeshAgent agent;
     State state;
     float timer;
@@ -19,6 +22,7 @@ public class Goat : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        voice = GetComponent<AudioSource>();   // Assignment 12
         SetState(State.Idle);
     }
 
@@ -65,6 +69,8 @@ public class Goat : MonoBehaviour
         timer = 0f;
         stateLabel.text = next.ToString();
         dashLane.SetActive(next == State.WindUp);
+        if (next == State.WindUp) windupSound.Play(voice);   // Assignment 12: блеет в начале предупреждения
+        if (next == State.Dash) dashSound.Play(voice);       // Assignment 12: топот рывка
 
         if (next == State.WindUp)
             transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
