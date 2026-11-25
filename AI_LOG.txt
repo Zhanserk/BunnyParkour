@@ -73,3 +73,24 @@ TOOLS USED (this assignment)
 What I do myself: read and test all of this in Unity, fill STUDENT REVIEW in DECISIONS.md,
 record the video and explain the code in the defense. Not tested yet by me: the game on
 iPhone and the look of the new menu.
+
+
+ASSIGNMENT 12 - Sound Pass (Nov 2026)
+
+TOOLS USED (this assignment)
+- Claude Code (AI agent in the terminal). It did the work in my project from my prompt:
+  wrote the code, generated the sounds, changed the scenes and prefabs, wrote the documents
+  and made the git commits and the merge. I did not type these scripts myself.
+- Made by me: the audio mixer GameMix.mixer (groups, exposed parameters, snapshots).
+
+1. Sounds: Claude Code generated all SFX and two music loops with a Python synthesis script
+   and set the import settings.
+2. Code: MusicManager, SoundManager (with RandomSound), SceneMusic, UiClickSound; changes in
+   PlayerController, Health, Fox, Hedgehog, Goat, PauseMenu, MainMenuUI, SaveData, SaveSystem
+   (marked "Assignment 12"); removed MusicVolume.
+3. Scenes: mixer outputs, AudioRoot prefab, Music and SFX sliders, pause snapshots, button
+   click sounds. Checked in batch mode (no errors, no empty fields).
+4. Documents: README section, DECISIONS.md, VIDEO_SCRIPT_A12.md, SCRIPT_MAP.md, this log.
+
+What I do myself: listen to the sounds in Unity, test on iPhone, fill STUDENT REVIEW, record
+the video and explain the code in the defense.
