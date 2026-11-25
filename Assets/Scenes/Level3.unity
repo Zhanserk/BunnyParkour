@@ -2134,14 +2134,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bda38ddbf7fb8e45b1085ecbbf80ccd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Fox
-  player: {fileID: 0}
-  points: []
+  player: {fileID: 646507532}
+  points:
+  - {fileID: 392044184}
+  - {fileID: 904775716}
+  - {fileID: 1134204922}
+  - {fileID: 1887667895}
   stateLabel: {fileID: 2007108949}
   warnRing: {fileID: 1563873786}
   walls:
     serializedVersion: 2
     m_Bits: 64
-  veiwRange: 7
+  viewRange: 7
   fov: 90
   loseTime: 2
   attackRange: 1.2
@@ -8155,7 +8159,6 @@ MonoBehaviour:
   stateLabel: {fileID: 64085225}
   veiwRange: 10
   fov: 120
-  extraAngle: 15
   aimTime: 0.8
   cooldown: 1
   turnSpeed: 180

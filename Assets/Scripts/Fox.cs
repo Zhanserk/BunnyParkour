@@ -4,37 +4,30 @@ using UnityEngine.AI;
 
 public class Fox : MonoBehaviour
 {
-    enum State {Patrol , Chase , Attack , Rest};
+    enum State { Patrol , Chase , Attack , Rest}
 
     [SerializeField] Transform player;
     [SerializeField] Transform[] points;
-
     [SerializeField] TMP_Text stateLabel;
-
     [SerializeField] GameObject warnRing;
     [SerializeField] LayerMask walls;
 
-    [SerializeField] float viewRange =  7f;
 
-    [SerializeField] float fov  = 90f;
-
-    [SerializeField] float loseTime =   2f;
-
+    [SerializeField] float viewRange  = 7f;
+    [SerializeField] float fov = 90f;
+    [SerializeField] float loseTime = 2f;
     [SerializeField] float attackRange = 1.2f;
-     
-    [SerializeField] float windUp  = 0.5f;
-    [SerializeField] float restTime  = 0.8f;
 
+    [SerializeField] float windUp = 0.5f;
+    [SerializeField] float restTime = 0.8f;
+
+
+    NavMeshAgent agent;
     State state;
 
     float timer;
     float lostTimer;
-
-    
-
-    int i ;
-
-    NavMeshAgent agent;
+    int i;
 
 
     void Start()
@@ -42,13 +35,18 @@ public class Fox : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         SetState(State.Patrol);
 
-        
 
         
+        
     }
+
     void Update()
     {
+        
         timer += Time.deltaTime;
+
+
+
         switch (state)
         {
             case State.Patrol:
@@ -56,16 +54,30 @@ public class Fox : MonoBehaviour
                 if (CanSeePlayer())
                 {
                     SetState(State.Chase);
-                
                 }
                 break;
             case State.Chase:
                 Chase();
+                break;
 
-            
+            case State.Attack:
+                Attack();
+                break;
+
+            case State.Rest:
+                if(timer >= restTime)
+                {
+                    SetState(State.Chase);
+                }
                 break;
 
 
+             
+
+
+
+
+            
 
 
         }
@@ -74,106 +86,116 @@ public class Fox : MonoBehaviour
     void SetState(State next)
     {
         state = next;
-
         timer = 0f;
         lostTimer = 0f;
         stateLabel.text = next.ToString();
-        agent.isStopped = (next == State.Attack || next == State.Rest);
-        warnRing.SetActive(next == State.Attack);
-        if(next == State.Patrol) 
-        agent.SetDestination(points[i].position);
-
-
-      
-
-
-
-
-
+        agent.isStopped = (next == State.Attack ||  next == State.Rest);
+        warnRing.SetActive (next == State.Attack);
+        if(next == State.Patrol)
+        {
+            agent.SetDestination(points[i].position);
+        }
 
 
 
     }
 
-        void Patrol()
+    void Patrol()
+    {
+
+        // Debug.Log("строю: " + agent.pathPending + "   осталось: " + agent.remainingDistance);
+
+        if(!agent.pathPending && agent.remainingDistance < 0.3f)
         {
-            
-            if(!agent.pathPending && agent.remainingDistance < 0.3f)
-            {
-                i = (i + 1) % points.Length;
-                agent.SetDestination(points[i].position);
-            }
+            i = (i + 1 ) % points.Length;
+            agent.SetDestination(points[i].position);
+
         }
+    }
 
 
-        bool CanSeePlayer()
+    bool CanSeePlayer()
     {
         Vector3 toPlayer = player.position - transform.position;
         if(toPlayer.magnitude > viewRange)
         {
             return false;
-        }
 
-        if(Vector3.Angle(transform.forward,toPlayer) > fov / 2f)
+        }
+        if (Vector3.Angle(transform.forward , toPlayer) > fov / 2f)
         {
             return false;
-
         }
 
         Vector3 eye = transform.position + Vector3.up * 0.5f;
-
         Vector3 target = player.position + Vector3.up * 0.5f;
-
         Vector3 dir = target - eye;
-
-        if(Physics.Raycast(eye , dir.normalized, dir.magnitude , walls))
+        Debug.DrawRay(eye, dir, Color.red);   // нарисовать луч красным
+        if(Physics.Raycast(eye , dir.normalized , dir.magnitude , walls))
         {
             return false;
 
         }
+
 
         return true;
 
 
-    }
+        
+        }
 
     void Chase()
     {
-        agent.SetDestination(player.position);
+       agent.SetDestination(player.position);
         if (CanSeePlayer())
         {
             lostTimer = 0f;
-
         }
         else
         {
-           lostTimer += Time.deltaTime;
+            lostTimer += Time.deltaTime;
+
         }
 
-        if(lostTimer > loseTime)
+        if(loseTime < lostTimer)
         {
             SetState(State.Patrol);
             return;
+
         }
 
-
-        if (Vector3.Distance(transform.position , player.position) <= attackRange)
+        if(Vector3.Distance(transform.position , player.position) <= attackRange)
         {
             SetState(State.Attack);
+
         }
+
+
     }
 
+    void Attack()
+    {
+        if(timer >= windUp)
+        {
+            if(Vector3.Distance(transform.position , player.position) <= attackRange + 0.3f)
+            {
+                player.GetComponent<Health>().Hurt();
+            } 
+
+            
+        SetState(State.Rest);
+        }
+    }
+    
 
 
-        
 
 
+    void LateUpdate()
+    {
+        stateLabel.transform.rotation = Camera.main.transform.rotation;
 
-
-
-
-
-
+    }
 
 
 
